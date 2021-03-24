@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">WeatherStation</string>
+    <!-- item_weather_station -->
+    <string name="item_weather_sit">測站名稱</string>
+    <string name="item_weather_aqi">AQI</string>
+    <string name="item_weather_status">狀態</string>
+    <string name="item_weather_pollutant">細懸浮微粒</string>
+    <string name="item_weather_wind_speed">風速</string>
+    <string name="item_weather_date">資料建置日期</string>
+    <string name="item_weather_038">臭氧8小時移動平均</string>
 </resources>
