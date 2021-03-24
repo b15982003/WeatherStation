@@ -26,7 +26,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingStart="16dp"
                 android:layout_alignParentStart="true"
                 android:orientation="vertical">
 
@@ -36,15 +38,14 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="@string/item_weather_sit"/>
 
                     <TextView
                         android:id="@+id/item_sit"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/item_weather_sit"/>
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
@@ -54,15 +55,14 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="@string/item_weather_aqi"/>
 
                     <TextView
                         android:id="@+id/item_aqi"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/item_weather_aqi"/>
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
@@ -72,15 +72,14 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="@string/item_weather_status"/>
 
                     <TextView
                         android:id="@+id/item_status"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/item_weather_status"/>
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
@@ -90,15 +89,14 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="@string/item_weather_pollutant"/>
 
                     <TextView
                         android:id="@+id/item_pollutant"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/item_weather_pollutant"/>
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
@@ -108,15 +106,14 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="@string/item_weather_wind_speed"/>
 
                     <TextView
                         android:id="@+id/item_wind_apeed"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/item_weather_wind_speed"/>
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
@@ -126,15 +123,14 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="@string/item_weather_date"/>
 
                     <TextView
                         android:id="@+id/item_date"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/item_weather_date"/>
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
@@ -144,15 +140,14 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="@string/item_weather_038"/>
 
                     <TextView
                         android:id="@+id/item_038"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/item_weather_038"/>
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
