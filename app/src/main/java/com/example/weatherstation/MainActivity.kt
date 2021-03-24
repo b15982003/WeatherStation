@@ -2,6 +2,7 @@ package com.example.weatherstation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
@@ -17,13 +18,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val adapter = MainAdapter(MainAdapter.OnClickListener { })
+        val adapter = MainAdapter(MainAdapter.OnClickListener {})
         val reWeather = findViewById<RecyclerView>(R.id.reWeather)
         reWeather.adapter = adapter
 
         viewModel.weatherData.observe(this, Observer {
             it?.let {
-                adapter.submitList(it.records)
+//                adapter.submitList(it.records)
+            }
+        })
+
+        viewModel.items.observe(this, Observer {
+            it?.let {
+                adapter.submitList(it)
             }
         })
     }

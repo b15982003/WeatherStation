@@ -14,13 +14,13 @@ import kotlinx.coroutines.launch
 
 class MainViewModel() : ViewModel() {
 
+    val dao = RayApplication.instance.dao
+
+    val items = dao.query()
+
     private val _weatherData = MutableLiveData<WeatherData>()
     val weatherData: LiveData<WeatherData>
         get() = _weatherData
-
-    private val _recordsData = MutableLiveData<List<Records>>()
-    val recordData: LiveData<List<Records>>
-        get() = _recordsData
 
     private var viewModelJob = Job()
 
@@ -29,24 +29,39 @@ class MainViewModel() : ViewModel() {
     init {
         getWeatherStatus()
         UtilLog.d("here")
-
     }
 
     fun getWeatherStatus() {
         coroutineScope.launch {
-
             try {
                 val response = RetrofitApi.retrofitService.getWeatherStatus()
 
                 if (response.isSuccessful) {
                     _weatherData.value = response.body()
-                    _recordsData.value = response.body()?.records
+                    for (i in 0..response.body()?.records!!.size) {
+                        insertData(response.body()?.records!![i])
+                    }
                 }
-
             } catch (e: Exception) {
                 UtilLog.d("response wrong$e")
                 _weatherData.value = null
             }
         }
+    }
+
+    fun addItem(todo: Records) {
+        dao.insert(todo)
+    }
+
+    fun deleteById(id: String) {
+        dao.deleteById(id)
+    }
+
+    fun deleteAll() {
+        dao.deleteAll()
+    }
+
+    private fun insertData(records: Records) {
+        addItem(records)
     }
 }

@@ -3,15 +3,17 @@ package com.example.weatherstation
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherstation.data.Records
 
-class MainAdapter(private val onClickListener: OnClickListener
-) :
-    ListAdapter<Records, MainAdapter.WeatherViewHolder>(DiffCallback) {
+class MainAdapter(
+    private val onClickListener: OnClickListener
+) : ListAdapter<Records, MainAdapter.WeatherViewHolder>(DiffCallback) {
+
 
     class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val itemSit: TextView = itemView.findViewById(R.id.item_sit)
@@ -21,15 +23,19 @@ class MainAdapter(private val onClickListener: OnClickListener
         private val itemWindSpeed: TextView = itemView.findViewById(R.id.item_wind_apeed)
         private val itemDate: TextView = itemView.findViewById(R.id.item_date)
         private val item038: TextView = itemView.findViewById(R.id.item_038)
+        private val itemDelete: ImageView = itemView.findViewById(R.id.item_delete)
 
         fun bind(records: Records) {
-            itemSit.text = records.siteId
+            itemSit.text = records.siteName
             itemAQI.text = records.aqi
             itemStatus.text = records.status
             itemPollutant.text = records.pollutant
             itemWindSpeed.text = records.windSpeed
             itemDate.text = records.importDate
             item038.text = records.o38hr
+            itemDelete.setOnClickListener {
+
+            }
         }
     }
 
@@ -57,6 +63,7 @@ class MainAdapter(private val onClickListener: OnClickListener
         return WeatherViewHolder(example)
 
     }
+
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
         val records = getItem(position)
 
@@ -69,4 +76,5 @@ class MainAdapter(private val onClickListener: OnClickListener
     class OnClickListener(val clickListener: (records: Records) -> Unit) {
         fun onClick(records: Records) = clickListener(records)
     }
+
 }

@@ -1,6 +1,8 @@
 package com.example.weatherstation.data
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
@@ -38,7 +40,9 @@ data class ApiKey(
 ):Parcelable
 
 @Parcelize
+@Entity
 data class Records(
+    @PrimaryKey
     @Json(name = "SiteName") val siteName: String,
     @Json(name = "County") val county: String,
     @Json(name = "AQI") val aqi: String,
