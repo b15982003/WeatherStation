@@ -68,4 +68,7 @@ dependencies {
     // android room
     implementation "androidx.room:room-runtime:2.1.0"
     kapt "androidx.room:room-compiler:2.1.0"
+
+    // android swiperLayout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }

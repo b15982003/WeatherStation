@@ -1,10 +1,11 @@
 package com.example.weatherstation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 
 class MainActivity() : AppCompatActivity() {
@@ -20,6 +21,14 @@ class MainActivity() : AppCompatActivity() {
         val reWeather = findViewById<RecyclerView>(R.id.reWeather)
         reWeather.adapter = adapter
 
+        val swipe = findViewById<SwipeRefreshLayout>(R.id.swiperefresh)
+        swipe.setOnRefreshListener {
+            swipe.isRefreshing = true
+            viewModel.deleteAll()
+            viewModel.getWeatherStatus()
+        }
+
+
         viewModel.weatherData.observe(this, Observer {
             it?.let {
 //                adapter.submitList(it.records)
@@ -29,6 +38,7 @@ class MainActivity() : AppCompatActivity() {
         viewModel.items.observe(this, Observer {
             it?.let {
                 adapter.submitList(it)
+                swipe.isRefreshing = false
             }
         })
     }
