@@ -10,10 +10,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherstation.data.Records
 
-class MainAdapter(
+open class MainAdapter(
     private val onClickListener: OnClickListener
 ) : ListAdapter<Records, MainAdapter.WeatherViewHolder>(DiffCallback) {
 
+    open fun deleteItem(itemId: String) {}
 
     class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val itemSit: TextView = itemView.findViewById(R.id.item_sit)
@@ -23,7 +24,7 @@ class MainAdapter(
         private val itemWindSpeed: TextView = itemView.findViewById(R.id.item_wind_apeed)
         private val itemDate: TextView = itemView.findViewById(R.id.item_date)
         private val item038: TextView = itemView.findViewById(R.id.item_038)
-        private val itemDelete: ImageView = itemView.findViewById(R.id.item_delete)
+        val itemDelete: ImageView = itemView.findViewById(R.id.item_delete)
 
         fun bind(records: Records) {
             itemSit.text = records.siteName
@@ -33,9 +34,6 @@ class MainAdapter(
             itemWindSpeed.text = records.windSpeed
             itemDate.text = records.importDate
             item038.text = records.o38hr
-            itemDelete.setOnClickListener {
-
-            }
         }
     }
 
@@ -56,7 +54,6 @@ class MainAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
-
         //載入項目模板
         val inflater = LayoutInflater.from(parent.context)
         val example = inflater.inflate(R.layout.item_weather_station, parent, false)
@@ -70,11 +67,15 @@ class MainAdapter(
         holder.itemView.setOnClickListener {
             onClickListener.onClick(records)
         }
+
+        holder.itemDelete.setOnClickListener {
+            deleteItem(records.siteId)
+        }
+
         holder.bind(records)
     }
 
     class OnClickListener(val clickListener: (records: Records) -> Unit) {
         fun onClick(records: Records) = clickListener(records)
     }
-
 }

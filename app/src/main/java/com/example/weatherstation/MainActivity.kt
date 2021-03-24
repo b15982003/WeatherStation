@@ -2,13 +2,12 @@ package com.example.weatherstation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity() : AppCompatActivity() {
 
     val viewModel: MainViewModel by lazy {
         ViewModelProvider(this).get(MainViewModel::class.java)
@@ -18,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val adapter = MainAdapter(MainAdapter.OnClickListener {})
         val reWeather = findViewById<RecyclerView>(R.id.reWeather)
         reWeather.adapter = adapter
 
@@ -33,5 +31,11 @@ class MainActivity : AppCompatActivity() {
                 adapter.submitList(it)
             }
         })
+    }
+
+    private val adapter = object : MainAdapter(MainAdapter.OnClickListener {}) {
+        override fun deleteItem(itemId: String) {
+            viewModel.deleteById(itemId)
+        }
     }
 }
