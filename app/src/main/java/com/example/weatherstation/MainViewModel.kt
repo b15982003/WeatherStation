@@ -1,9 +1,9 @@
 package com.example.weatherstation
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.weatherstation.data.Records
 import com.example.weatherstation.data.WeatherData
 import com.example.weatherstation.network.RetrofitApi
 import com.example.weatherstation.util.UtilLog
@@ -18,6 +18,10 @@ class MainViewModel() : ViewModel() {
     val weatherData: LiveData<WeatherData>
         get() = _weatherData
 
+    private val _recordsData = MutableLiveData<List<Records>>()
+    val recordData: LiveData<List<Records>>
+        get() = _recordsData
+
     private var viewModelJob = Job()
 
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -30,13 +34,17 @@ class MainViewModel() : ViewModel() {
 
     fun getWeatherStatus() {
         coroutineScope.launch {
+
             try {
                 val response = RetrofitApi.retrofitService.getWeatherStatus()
+
                 if (response.isSuccessful) {
                     _weatherData.value = response.body()
+                    _recordsData.value = response.body()?.records
                 }
 
             } catch (e: Exception) {
+                UtilLog.d("response wrong$e")
                 _weatherData.value = null
             }
         }

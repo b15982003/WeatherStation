@@ -9,7 +9,7 @@ data class WeatherData(
     val include_total : Boolean,
     val resource_id : String,
     val fields : List<field>,
-    @Json(name = "_extras") val extras: ApiKey,
+    @Json(name = "__extras") val extras: ApiKey,
     val records_format : String,
     val records : List<Records>,
     val limit : Int,
@@ -40,7 +40,7 @@ data class ApiKey(
 @Parcelize
 data class Records(
     @Json(name = "SiteName") val siteName: String,
-    @Json(name = "Country") val country: String,
+    @Json(name = "County") val county: String,
     @Json(name = "AQI") val aqi: String,
     @Json(name = "Pollutant") val pollutant: String,
     @Json(name = "Status") val status: String,

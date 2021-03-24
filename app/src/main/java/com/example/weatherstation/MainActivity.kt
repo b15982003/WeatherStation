@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.weatherstation.util.UtilLog
+import androidx.recyclerview.widget.RecyclerView
 
 
 class MainActivity : AppCompatActivity() {
@@ -17,12 +17,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel.weatherData.observe(this, Observer {
-            UtilLog.d("see")
-            it?.let {
+        val adapter = MainAdapter(MainAdapter.OnClickListener { })
+        val reWeather = findViewById<RecyclerView>(R.id.reWeather)
+        reWeather.adapter = adapter
 
+        viewModel.weatherData.observe(this, Observer {
+            it?.let {
+                adapter.submitList(it.records)
             }
         })
-
     }
 }
